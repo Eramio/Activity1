@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	 <head>
-		<title>My frist PHP website</title>
+		<title>My first PHP website</title>
 	 </head>
 	 <style>
 		table, th, td {
@@ -24,7 +24,7 @@
 	 <body>
 		 <h2>Home Page</h2>
 		 <p> Hello <?php Print "$user"?>!</p> <!--Display's user name-->
-		 <a href="logout.php">Click here to go logout</a><br/><br/>
+		 <a href="logout.php">Click here to logout</a><br/><br/>
 		 <form action="add.php" method="POST">
 			 Add more to list: <input type="text" name="details" /> <br/>
 			 Public post? <input type="checkbox" name="public[]" value="yes" /> <br/>
@@ -56,16 +56,27 @@
 				while($row = mysqli_fetch_array($query)) //Display all the rows from query
 				{
 					Print "<tr>";
-					Print "<td>".$row['id']."</td>";
-					Print "<td>".$row['details']."</td>";
-					Print "<td>".$row['date_posted']. "-". $row['time_posted']."</td>";
-					Print "<td>".$row['date_edited']. "-". $row['time_edited']."</td>";
-					Print '<td><a href="edit.php?id="'.$row['id'].">edit</a></td>";
-					Print '<td><a href="delete.php?id="'.$row['id'].">delete</a></td>";
-					Print "<td>".$row['public']."</td>";
+						Print "<td>".$row['id']."</td>";
+						Print "<td>".$row['details']."</td>";
+						Print "<td>".$row['date_posted']. "-". $row['time_posted']."</td>";
+						Print "<td>".$row['date_edited']. "-". $row['time_edited']."</td>";
+						Print '<td><a href="edit.php?id='.$row['id'].'">edit</a></td>';
+						Print "<td><a href='#' onclick='myFunction(".$row['id'].")'>delete</a></td>";
+						Print "<td>".$row['public']."</td>";
 					Print "</tr>";
 				}
 			?>
-		 </table>
+		</table>
+		<script>
+			function myFunction(id)
+			{
+				var r = confirm("Are you sure you want to delete this record?");
+				if(r == true)
+				{
+					window.location.assign("delete.php?id=" + id);
+				}
+			}
+
+		</script>
 	 </body>
 </html>

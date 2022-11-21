@@ -80,8 +80,8 @@
         {
         Print '
         <form action="edit.php" method="POST">
-        Enter new detail: <input type="text" name="details"/><br/>
-        public post? <input type="checkbox" name="public[]"
+        Enter new details: <input type="text" name="details"/><br/>
+        Public post? <input type="checkbox" name="public[]"
         value="yes"/><br/>
         <input type="submit" value="Update List"/>
         </form>
@@ -102,13 +102,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $password_db = "";
     $db_name = "first_db";
     // Create connection
-    $conn = mysqli_connect($servername, $username_db, $password_db,
-    $db_name);
+    $conn = mysqli_connect($servername, $username_db, $password_db, $db_name);
     // Check connection
     if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+        die("Connection failed: " . mysqli_connect_error());
     }
-    $details = mysqli_real_escape_string($conn,$_POST['details']);
+    $details = mysqli_real_escape_string($conn, $_POST['details']);
     $public = "no";
     $id = $_SESSION['id'];
     $time = strftime("%X");//time
@@ -120,7 +119,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             $public = "yes";
         }
     }
-    mysqli_query($conn,"UPDATE list_tbl SET details='$details', public='$public', date_edited='$date', time_edited='$time' WHERE id='$id'") ;
+    mysqli_query($conn,"UPDATE list_tbl SET details='$details', public='$public', 
+    date_edited='$date', time_edited='$time' WHERE id='$id'");
     header("location: home.php");
 }
 ?>

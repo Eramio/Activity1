@@ -44,12 +44,12 @@
 		//redirects to register.php
 		}
 	}
-	
+
 	if($bool){
-	mysqli_query($conn,"INSERT INTO users_tbl (username, password) VALUES
-	('$username','$password')"); //Insert the value to the table users_tbl
-	Print '<script>alert("Successfully Registered");</script>'; //Prompt the user
-	Print '<script>window.location.assign("register.php");</script>';
-	//redirects to register.php
+		mysqli_query($conn,"INSERT INTO users_tbl (username, password) VALUES
+		('$username','$password')"); //Insert the value to the table users_tbl
+		Print '<script>alert("Successfully Registered");</script>'; //Prompt the user
+		Print '<script>window.location.assign("register.php");</script>';
+		//redirects to register.php
 	}
 }?>
